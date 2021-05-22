@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: 'basic-messaging-service runtime infrastructure'
+
+Parameters: 
+  Service:
+    Type: String
+    Default: basic-messaging-service
+    Description: Service Name
+
+Resources:
+
+  ServiceApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: v1
+      Name: !Ref Service
+
+  HelloWorldLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub ${Service}-hello
+      Description: Basic hello world to confirm development and project envrionment
+      CodeUri: ../dist/api
+      Handler: lambda.handler
+      Runtime: nodejs14.x
+      Events:
+        ServiceAPI:
+          Type: Api
+          Properties:
+            Method: get
+            Path: /hello
+            RestApiId: !Ref ServiceApi
