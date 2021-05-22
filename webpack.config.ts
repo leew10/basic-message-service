@@ -7,7 +7,9 @@ const config : Configuration = {
         moduleIds: "named",
     },
     entry: {
-        lambda: "./src/index.ts"
+        hello: "./src/lambda/handlers/helloWorld.ts",
+        retrieve: "./src/lambda/handlers/retrieveMessages.ts",
+        send: "./src/lambda/handlers/sendMessage.ts"
     },
     resolve: {
         extensions: ['.ts', '.js']

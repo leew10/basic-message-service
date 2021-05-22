@@ -22,7 +22,7 @@ Resources:
       FunctionName: !Sub ${Service}-hello
       Description: Basic hello world to confirm development and project envrionment
       CodeUri: ../dist/api
-      Handler: lambda.handler
+      Handler: hello.handler
       Runtime: nodejs14.x
       Events:
         ServiceAPI:
@@ -30,4 +30,36 @@ Resources:
           Properties:
             Method: get
             Path: /hello
+            RestApiId: !Ref ServiceApi
+
+  RetrieveMessagesLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub ${Service}-retrieve
+      Description: Retrieve messages for a given user
+      CodeUri: ../dist/api
+      Handler: retrieve.handler
+      Runtime: nodejs14.x
+      Events:
+        ServiceAPI:
+          Type: Api
+          Properties:
+            Method: get
+            Path: /users/{recipient}/messages
+            RestApiId: !Ref ServiceApi
+
+  SendMessagesLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub ${Service}-send
+      Description: Retrieve messages for a given user
+      CodeUri: ../dist/api
+      Handler: send.handler
+      Runtime: nodejs14.x
+      Events:
+        ServiceAPI:
+          Type: Api
+          Properties:
+            Method: post
+            Path: /users/{recipient}/messages
             RestApiId: !Ref ServiceApi
