@@ -36,6 +36,9 @@ This command will do the following in order:
 * build the source with webpack
 * start the web server using sam-cli.
 
+#### Unknown command/docker compose version
+> This project uses version 3.8 for its docker-compose file. It also assumes you are using a version of docker where the compose commands have been wrapped into the base docker cli. If you see errors related to either of these please update your version of docker and docker compose.
+#### Issues mounting directory
 > Depending on your platform you may encounter an issue mounting the directory for dynamo. 
 By default the project will attempt to mount to `./docker/dynamodb` some platforms will automatically create this on the attempt to mount, but others require the directory be created manually prior. If you see an error mounting this directory simple create it within the working directory and run the command again.
 
@@ -53,7 +56,7 @@ Once the service has been setup you can verify the service is working as expecte
 ```
 curl --location --request GET 'localhost:3000/hello'
 ```
-
+#### Unsupported runtime
 >You may encounter an unsupported runtime error if your sam-cli version is out of date. If you encounter this error please upgrade your version of sam-cli and restart the server.
 
 If you see the following response then you service is running and able to connect to the docker network your dynamo instance is running in.
