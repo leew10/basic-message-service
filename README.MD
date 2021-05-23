@@ -18,11 +18,23 @@ This project assumes you have the following installed and functioning on your ma
 Once you have them setup you may proceed wtih the local setup instructions.
 
 ### Local Setup
-Once you've checked out the repository to a local directory you can use the following command to start the service:
+Once you've checked out the repository to a local directory you will need to insall the node dependencies:
+
+```
+npm install
+```
+
+Once the dependencies are installed, you can use the following command to start the service:
 
 ```
 npm start
 ```
+
+This command will do the following in order:
+* start the dynamo docker container
+* create the docker network used to connect the API to the container
+* build the source with webpack
+* start the web server using sam-cli.
 
 If this is your first time starting the service you will then need to run the following command to initialize your locally running dynamo database. 
 
