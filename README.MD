@@ -40,7 +40,7 @@ This command will do the following in order:
 > This project uses version 3.8 for its docker-compose file. It also assumes you are using a version of docker where the compose commands have been wrapped into the base docker cli. If you see errors related to either of these please update your version of docker and docker compose.
 #### Issues mounting directory
 > Depending on your platform you may encounter an issue mounting the directory for dynamo. 
-By default the project will attempt to mount to `./docker/dynamodb` some platforms will automatically create this on the attempt to mount, but others require the directory be created manually prior. If you see an error mounting this directory simple create it within the working directory and run the command again.
+By default the project will attempt to mount to `./docker/dynamodb` some platforms will automatically create this on the attempt to mount, but others require the directory be created manually prior. If you see an error mounting this directory simply create it within the working directory and run the command again.
 
 If this is your first time starting the service you will then need to run the following command to initialize your locally running dynamo database. 
 
