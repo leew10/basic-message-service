@@ -1,8 +1,8 @@
 import { APIGatewayProxyHandler, APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
+import { DynamoMessageRepository } from "../../data/DynamoMessageRepository";
 import { BadRequestError } from "../../errors/apiErrors";
 import { Message } from "../../service/Message";
 import { MessageService } from "../../service/MessageService";
-import { MockMessageService } from "../../service/MockMessageService";
 import { ErrorHandler } from "../util/ErrorHandler";
 import { ResponseBuilder } from "../util/ResponseBuilder";
 
@@ -12,7 +12,7 @@ type SendRequest = {
     message: string;
 };
 
-let service : MessageService = new MockMessageService();
+let service : MessageService = new DynamoMessageRepository();
 
 /**
  * Handle a request to retrieve a set of messages for a given user.
@@ -33,6 +33,11 @@ export const handler : APIGatewayProxyHandler = async (event : APIGatewayProxyEv
     return response;
 }
 
+/**
+ * Validate the incoming request and extract it as a Message object.
+ * @param event The incoming API Gateway Request
+ * @returns A well formed message object
+ */
 const  extractRequest = (event: APIGatewayProxyEvent) : Message => {
     const parsedBody = event.body ? JSON.parse(event.body) : {};
 
@@ -48,6 +53,12 @@ const  extractRequest = (event: APIGatewayProxyEvent) : Message => {
     }
 }
 
+/**
+ * Validate the set of parameteers required by the send request.
+ * 
+ * @param request The incoming request
+ * @returns Confirms the parameters match the incoming type definition
+ */
 const isRequestValid = (request: { [key: string]: string | undefined }) : request is SendRequest => {
     return typeof request.recipient === 'string' 
             && typeof request.sender === 'string' 

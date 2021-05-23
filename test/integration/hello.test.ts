@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 
+jest.setTimeout(10000);
 it("Can invoke hello world", async () => {
     const uri = `${global.basePath}/hello`;
     const expected = {

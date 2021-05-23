@@ -1,0 +1,119 @@
+swagger: "2.0"
+info:
+  description: "This is a basic messaging service for use with a simple client."
+  version: "1.0.0"
+  title: "Basic Messaging Service"
+  license:
+    name: "MIT"
+    url: "https://www.mit.edu/~amini/LICENSE.md"
+host: "localhost:3000"
+tags:
+- name: "messages"
+  description: "Send and recieve user messages"
+- name: "hello"
+  description: "Basic hello world to confirm service health"
+
+schemes:
+- "http"
+paths:
+  /hello:
+    get:
+      tags:
+      - "hello"
+      summary: "Basic hello world to confirm service health"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Service is working as expected"
+          schema:
+            $ref: "#/definitions/HelloWorld"
+  /users/{recipient}/messages:
+    post:
+      tags:
+      - "messages"
+      summary: "Send a message to a user"
+      operationId: "sendMessage"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "recipient"
+        in: "path"
+        description: "The recipient of the message"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "A basic request containing the message and sender."
+        required: true
+        schema:
+          $ref: "#/definitions/SendMessageRequest"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Message"
+        "400":
+          description: "Invalid input"
+        "500":
+          description: "Unknown service error occurred"
+    get:
+      tags:
+      - "messages"
+      summary: "Retrieve messages sent to a given user"
+      operationId: "retrieveMessages"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "recipient"
+        in: "path"
+        description: "The recipient of the message"
+        required: true
+        type: "string"
+      - name: "sender"
+        in: "query"
+        description: "An optional filter to restrict results by sender"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Message"
+        "400":
+          description: "Missing required parameter or parameter has invalid format"
+        "500":
+          description: "Unknown service error occurred"
+definitions:
+  Message:
+    type: "object"
+    properties:
+      recipient: 
+        type: "string"
+      sender:
+        type: "string"
+      message:
+        type: "string"
+      sentAt:
+        type: "string"
+        format: "datetime"
+  SendMessageRequest:
+    type: "object"
+    properties:
+      sender:
+        type: "string"
+      message:
+        type: "string"
+  HelloWorld:
+    type: "object"
+    properties: 
+      message:
+        type: "string"
+        example: "Hello World!"
+    

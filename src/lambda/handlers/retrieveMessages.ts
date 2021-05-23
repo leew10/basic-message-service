@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from "aws-lambda";
+import { DynamoMessageRepository } from "../../data/DynamoMessageRepository";
 import { BadRequestError } from "../../errors/apiErrors";
 import { MessageService } from "../../service/MessageService";
-import { MockMessageService } from "../../service/MockMessageService";
 import { ErrorHandler } from "../util/ErrorHandler";
 import { ResponseBuilder } from "../util/ResponseBuilder";
 
@@ -10,7 +10,7 @@ type RetrieveRequest = {
     sender?: string;
 }
 
-let service : MessageService = new MockMessageService();
+let service : MessageService = new DynamoMessageRepository();
 
 /**
  * Handle a request to retrieve a set of messages for a given user.

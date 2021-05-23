@@ -3,3 +3,5 @@ dist/
 coverage/
 #Installed Dependencies
 node_modules/
+#Docker
+docker/

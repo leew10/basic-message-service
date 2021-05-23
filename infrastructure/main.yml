@@ -24,6 +24,7 @@ Resources:
       CodeUri: ../dist/api
       Handler: hello.handler
       Runtime: nodejs14.x
+      Timeout: 10
       Events:
         ServiceAPI:
           Type: Api
@@ -40,6 +41,7 @@ Resources:
       CodeUri: ../dist/api
       Handler: retrieve.handler
       Runtime: nodejs14.x
+      Timeout: 10
       Events:
         ServiceAPI:
           Type: Api
@@ -56,6 +58,7 @@ Resources:
       CodeUri: ../dist/api
       Handler: send.handler
       Runtime: nodejs14.x
+      Timeout: 10
       Events:
         ServiceAPI:
           Type: Api
