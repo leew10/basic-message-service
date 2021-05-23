@@ -74,5 +74,5 @@ NOTE: Some integration tests have been omitted for time; however, I've included 
 
 Integration tests can be executed by running the following command with the local server running:
 ```
-npm run integration-test
+npm run test:integration
 ```
