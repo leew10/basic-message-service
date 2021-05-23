@@ -7,13 +7,13 @@
 * [src/](./src) - Contains the project source code
 * [test/](./test) - Contains the source code for integration and unit tests
 ### Prereqs
-This project assumes you have the following installed and functioning on your machine:
+This project assumes you have the following installed and functioning on your machine. Older versions will likely work, but, for troubleshooting purposes, successfully tested versions are listed in parenthesis.
 
-* [docker](https://docs.docker.com/desktop/)
-* [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
-* [sam-cli](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
-* [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/)
-* [node14](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/)
+* [docker](https://docs.docker.com/desktop/) (20.10.6)
+* [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) (2.2.5)
+* [sam-cli](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) (1.23.0)
+* [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/) (6.14.13)
+* [node14](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/) (14.17.0)
 
 Once you have them setup you may proceed wtih the local setup instructions.
 
