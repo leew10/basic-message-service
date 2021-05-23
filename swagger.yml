@@ -5,7 +5,7 @@ info:
   title: "Basic Messaging Service"
   license:
     name: "MIT"
-    url: "https://www.mit.edu/~amini/LICENSE.md"
+    url: "https://github.com/leew10/basic-message-service/blob/master/LICENSE"
 host: "localhost:3000"
 tags:
 - name: "messages"
